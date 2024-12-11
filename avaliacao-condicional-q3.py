@@ -7,31 +7,36 @@ ira2 = float(ira2)
 mes_nascimento1 = int(mes_nascimento1)
 mes_nascimento2 = int(mes_nascimento2)
 
+def verificar(ira, nome, mes_nascimento):
+    if ira1 < 4 and ira2 < 4:
+        return False
 
-def main():
-    decisao(ira1, nome1, mes_nascimento1)
-    decisao(ira2, nome2, mes_nascimento2)
-
-
-def decisao(ira, nome, mes_nascimento):
-    if ira >= 4:
-        if not mes_nascimento == 10:
-            # quem tem o maior ira ganha
-            if ira > ira2:
-                print(nome1)
-            elif ira < ira2:
-                print(nome2)
-
-            # caso o ira for igual vai pela ordem alfabetica maior
-            if ira1 == ira2:
-                if nome1[0].lower() < nome2[0].lower():
-                    print(nome1)
-
-                elif nome2[0].lower() > nome2[0].lower():
-                    print(nome2)
-        else:
-            print(nome)
-    else:
+    if ira < 4:
         print(f"{nome}, melhor focar nos estudos.")
+        return True
 
-main()
+    if mes_nascimento1 == 10 and mes_nascimento2 == 10:
+        print("Nao posso decidir!")
+        return False
+
+    if mes_nascimento == 10:
+        print(nome)
+    elif ira >= 4:
+        return True
+
+
+if verificar(ira1, nome1, mes_nascimento1) and verificar(ira2, nome2, mes_nascimento2):
+    if ira1 > ira2:
+        print(nome1)
+    elif ira1 < ira2:
+        print(nome2)
+
+    if ira1 == ira2:
+        if nome1 > nome2:
+            print(nome1)
+        elif nome1 < nome2:
+            print(nome2)
+        elif nome1 == nome2:
+            print("Nao posso decidir!")
+elif ira1 < 4 and ira2 < 4:
+    print(f"{nome1} e {nome2}, melhor focarem nos estudos.")
