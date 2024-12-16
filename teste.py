@@ -1,13 +1,16 @@
-sequencia = input()
+sequencia = 7 * "0" + 7 * "1"
 
-if 7*"1" in sequencia:
-    print("VAMO TRICOLOR")
+def vantagem(s):
+    if 7*"1" in s and 7*"0" in s:
+        print("JOGO PESADO")
+        return None
+    elif 7*"1" in s:
+        print("VAMO TRICOLOR")
+        return None
+    elif 7*"0" in s:
+        print("VAI TIMAO")
+        return None
+    else:
+        print("BORA UM VIRTUAL NO CODEFORCES")
 
-elif 7*"0" in sequencia:
-    print("VAI TIMAO")
-
-elif 7*"1" in sequencia and 7*"0" in sequencia:
-    print("JOGO PESADO")
-
-else:
-    print("BORA UM VIRTUAL NO CODEFORCES")
+vantagem(sequencia)
