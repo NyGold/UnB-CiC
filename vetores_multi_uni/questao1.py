@@ -20,8 +20,7 @@ for bomba in range(qtde_projeteis):
     for y in range(tamanho_terreno_y-1):
         profundidade[y][coodernadas_projetil_y] += 1
 
-
-    profundidade[coodernadas_projetil_x-1][coodernadas_projetil_y-1] -= 1
+    profundidade[coodernadas_projetil_x][coodernadas_projetil_y] -= 1
 
 #     y=1 2 3
 # x= i  0 1 2
