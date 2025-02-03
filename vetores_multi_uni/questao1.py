@@ -11,11 +11,15 @@ profundidade = [[0] * tamanho_terreno_x] * tamanho_terreno_y
 for bomba in range(qtde_projeteis):
     coodernadas_projetil_x, coodernadas_projetil_y = coodernadas_projetil[bomba]
 
+    coodernadas_projetil_x -= 1
+    coodernadas_projetil_y -= 1
+
     for x in range(tamanho_terreno_x-1):
-        profundidade[x][coodernadas_projetil_x] += 1
+        profundidade[coodernadas_projetil_x][x] += 1
 
     for y in range(tamanho_terreno_y-1):
-        profundidade[coodernadas_projetil_y][y] += 1
+        profundidade[y][coodernadas_projetil_y] += 1
+
 
     profundidade[coodernadas_projetil_x-1][coodernadas_projetil_y-1] -= 1
 
