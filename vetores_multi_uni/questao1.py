@@ -1,32 +1,46 @@
-# define a matriz
-tamanho_terreno_x, tamanho_terreno_y = [int(i) for i in input().split()]
-coodernadas_projetil = []
-qtde_projeteis = int(input())
+len_terreno_x, len_terreno_y = [int(i) for i in input().split()]
+qtde_bombas = int(input())
 
-for _ in range(qtde_projeteis):
-    coodernadas_projetil.append([int(i) for i in input().split()])
+profundidade = [[0] * len_terreno_y for _ in range(len_terreno_x)]
 
-profundidade = [[0] * tamanho_terreno_x] * tamanho_terreno_y
+'''< o que tinha de problema com o outro código? >
 
-for bomba in range(qtde_projeteis):
-    coodernadas_projetil_x, coodernadas_projetil_y = coodernadas_projetil[bomba]
+basicamente quando eu criava a matriz profundidade desse jeito:
+    profundidade = [[0] * len_terreno_y] * len_terreno_x
 
-    coodernadas_projetil_x -= 1
-    coodernadas_projetil_y -= 1
+o python entendia com esse código que eu queria criar vetores de tamanho
+len_terreno_y tantas vezes len_terreno_x, que possuem o mesmo indentificador
+entre eles, então quando eu ia referenciar somente um deles, eu acabava alterando
+todos com o mesmo indentificador. Ou seja toda a matriz!
 
-    for x in range(tamanho_terreno_x-1):
-        profundidade[coodernadas_projetil_x][x] += 1
+Para melhorar a situação, apenas faça ele definir os vetores separados de qualquer
+outro jeito. Como o que eu fiz aqui em cima:
 
-    for y in range(tamanho_terreno_y-1):
-        profundidade[y][coodernadas_projetil_y] += 1
+profundidade = [[0] * len_terreno_y for _ in range(len_terreno_x)]
 
-    profundidade[coodernadas_projetil_x][coodernadas_projetil_y] -= 1
+ou como meu colega fez:
 
-#     y=1 2 3
-# x= i  0 1 2
-# 1  0 [0 0 0]    x    0       1       2
-# 2  1 [0 0 0]    y  0 1 2   0 1 2   0 1 2
-# 3  2 [0 0 0]  ou [[0,0,0],[0,0,0],[0,0,0]]
+terreno = []
+for i in range(y_terreno):
+    linhas = []
+    for _ in range(x_terreno):
+        linhas.append(0)
+    terreno.append(linhas)
+'''
+for _ in range(qtde_bombas):
+    x, y = [int(i) for i in input().split()]
 
-for i in profundidade:
-    print(i)
+    x -= 1
+    y -= 1
+
+    for i in range(len_terreno_y):
+        profundidade[x][i] += 1
+
+    for j in range(len_terreno_x):
+        profundidade[j][y] += 1
+
+    profundidade[x][y] -= 1
+
+max_profundidade = max(max(linha) for linha in profundidade)
+count = sum(linha.count(max_profundidade) for linha in profundidade)
+print(count)
