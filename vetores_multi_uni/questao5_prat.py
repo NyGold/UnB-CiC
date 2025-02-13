@@ -14,10 +14,7 @@ n, m = [int(i) for i in input().split()]
 valores_max = []
 
 for _ in range(n):
-    fileira = input()
-    fileira = fileira.replace(" ", "")
-    fileira = fileira.split("1")
-    
+    fileira = input().replace(" ", "").split("1")
     valores_max.append(valor_max_fileira(fileira))
     
 print(max(valores_max))
